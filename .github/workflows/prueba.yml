@@ -7,8 +7,19 @@ on:
       - develop
 
 jobs:
-  saludo:
-    name: Job de saludo
+  saludo1:
+    name: Job de saludo 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: primer saludo
+        run: echo "Hola mundo 1"
+      - name: segundo saludo
+        run: echo "Hola mundo 2"
+      - name: tercer saludo
+        run: echo "Hola mundo 3"
+  
+  saludo2:
+    name: Job de saludo 2
     runs-on: ubuntu-latest
     steps:
       - name: primer saludo
