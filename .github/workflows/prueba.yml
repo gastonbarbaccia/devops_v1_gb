@@ -1,0 +1,16 @@
+name: Prueba pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  saludo:
+    name: Job de saludo
+    runs-on: ubuntu-latest
+    steps:
+      - name: primer saludo
+        run: echo "Hola mundo"
+
