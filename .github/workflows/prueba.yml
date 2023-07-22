@@ -12,5 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: primer saludo
-        run: echo "Hola mundo"
-
+        run: echo "Hola mundo 1"
+      - name: segundo saludo
+        run: echo "Hola mundo 2"
+      - name: tercer saludo
+        run: echo "Hola mundo 3"
