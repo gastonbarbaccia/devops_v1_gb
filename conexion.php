@@ -5,10 +5,10 @@ function conexion_dbstock(){
 
     $hostname ="localhost";
     $username ="root";
-    $passwdd ="";
+    $password ="nasdf123123";
     $database = "stock_zapatillas";
 
-    $conexion= new mysqli($hostname,$username,$passwdd, $database);
+    $conexion= new mysqli($hostname,$username,$password, $database);
 
     return $conexion;
 
