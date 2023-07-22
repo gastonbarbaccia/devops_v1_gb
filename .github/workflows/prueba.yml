@@ -31,34 +31,57 @@ on:
 #      - name: tercer saludo
 #        run: echo "Hola mundo 3"
 
-jobs:
-  build:
-    name: Compilacion
-    runs-on: ubuntu-latest
-    steps:
-      - name: Compilando el codigo
-        run: echo "El codigo se esta compilando"
-  
-  test:
-    name: Testing
-    runs-on: ubuntu-latest
-    needs: ["build"]
-    steps:
-      - name: Ejecucion de pruebas
-        run: echo "Se estan ejecutando pruebas unitarias"
-  
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    needs: ["test"]
-    steps:
-      - name: Preparando despliegue
-        run: echo "Preparando codigo para despliegue"
+#------------------------------------------------------------------
 
-  deploy:
-    name: Deploy
+#jobs:
+#  build:
+#    name: Compilacion
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Compilando el codigo
+#        run: echo "El codigo se esta compilando"
+  
+#  test:
+#    name: Testing
+#    runs-on: ubuntu-latest
+#    needs: ["build"]
+#    steps:
+#      - name: Ejecucion de pruebas
+#        run: echo "Se estan ejecutando pruebas unitarias"
+  
+#  release:
+#    name: Release
+#    runs-on: ubuntu-latest
+#    needs: ["test"]
+#    steps:
+#      - name: Preparando despliegue
+#        run: echo "Preparando codigo para despliegue"
+
+#  deploy:
+#    name: Deploy
+#    runs-on: ubuntu-latest
+#    needs: ["release"]
+#    steps:
+#      - name: Despligue a dev
+#        run: echo "Desplegando codigo a ambiente de desarrollo"
+
+
+jobs:
+  dependency_check:
+    name: Dependency check Scan
     runs-on: ubuntu-latest
-    needs: ["release"]
     steps:
-      - name: Despligue a dev
-        run: echo "Desplegando codigo a ambiente de desarrollo"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'test'
+          path: '.'
+          format: 'HTML'    
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports  
